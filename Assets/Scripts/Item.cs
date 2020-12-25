@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Sprite Image;    
+    public Money Moneys;
+    public string Name;
+    public int Count;
 
-    // Update is called once per frame
-    void Update()
+    public Item(int count, string name, Money moneys, Sprite image)
     {
-        
+        Count = count;
+        Name = name;
+        Moneys = moneys;
+        Image = image;
     }
 }

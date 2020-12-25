@@ -15,7 +15,20 @@ public class LotUI : MonoBehaviour
     [SerializeField] private TMP_Text _playerName;
     [SerializeField] private TMP_Text _playerLevel;
 
-    private Item _item;
-    private Player _player;
-    private Money _money;
+    private Lot _lot;
+
+    public void Init(Lot lot)
+    {
+        _lot = lot;
+
+        _itemImage.texture = _lot.Item.Image.texture;
+        _moneyImage.texture = _lot.Item.Moneys.Image.texture;
+        _playerImage.texture = _lot.Player.Image.texture;
+
+        _itemName.text = _lot.Item.Name;
+        _itemCount.text = _lot.Item.Count.ToString();
+        _itemCost.text = _lot.Item.Moneys.Count.ToString();
+        _playerName.text = _lot.Player.Name;
+        _playerLevel.text = _lot.Player.Level.ToString();
+    }
 }

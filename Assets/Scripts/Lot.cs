@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Lot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Item Item;
+    public Player Player;
 
-    // Update is called once per frame
-    void Update()
+    public Lot(Item item, Player player)
     {
-        
+        Item = item;
+        Player = player;
     }
 }

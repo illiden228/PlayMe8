@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
-public class Player : MonoBehaviour
+
+public class Player
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string Name;
+    public Sprite Image;
+    public int Level;
 
-    // Update is called once per frame
-    void Update()
+    public Player(string name, int level, Sprite image)
     {
-        
+        Name = name;
+        Level = level;
+        Image = image;
     }
 }
