@@ -4,52 +4,41 @@ using UnityEngine;
 
 public class ServerEmulator : MonoBehaviour
 {
-    [SerializeField] private Sprite[] _itemImages;
-    [SerializeField] private Sprite[] _playerImages;
-    [SerializeField] private Sprite[] _moneyImages;
+    [SerializeField] private int _capacity;
+    [SerializeField] private Item[] _items;
+    [SerializeField] private Player[] _players;
+    private List<Lot> _lots = new List<Lot>();
 
-    public List<Lot> CreateLots()
+    public string GetLots()
     {
-        var newMoney1 = new Money(50, _moneyImages[0]);
-        var newMoney2 = new Money(50, _moneyImages[1]);
-        var item = new Item(45, "Какой-то предмет", newMoney1, _itemImages[Random.Range(0, _itemImages.Length)]);
-        var item2 = new Item(56, "Какой-то предмет", newMoney2, _itemImages[Random.Range(0, _itemImages.Length)]);
-        var player = new Player("Енотик", 9, _playerImages[0]);
-        var player2 = new Player("Енотик", 86, _playerImages[1]);
-        var lot = new Lot(item, player);
-        var lot2 = new Lot(item2, player2);
-        var lot3 = new Lot(item, player);
-        var lot4 = new Lot(item2, player);
-        var lot5 = new Lot(item, player2);
-        var lot6 = new Lot(item2, player);
-        var lot7 = new Lot(item, player);
-        var lot8 = new Lot(item, player);
-        var lot9 = new Lot(item2, player);
-        var lot10 = new Lot(item, player2);
-        var lot11 = new Lot(item, player2);
-        var lot12 = new Lot(item, player2);
-        var lot13 = new Lot(item, player2);
-        var lot14 = new Lot(item, player2);
-        var lot15 = new Lot(item, player2);
-        var lot16 = new Lot(item, player2);
+        for (int i = 0; i < _capacity - _lots.Count; i++)
+        {
+            int itemRange = Random.Range(0, _items.Length);
 
-        return new List<Lot>() { lot, lot2, lot3, lot4, lot5, lot6, lot7, lot8, lot9, lot10, lot11, lot12,lot13,lot14,lot15,lot16,
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2),
-            new Lot(item, player2)
-        };
+            int playerRange = Random.Range(0, _players.Length);
+            Item newItem = new Item(_items[itemRange]);
+            Lot lot = new Lot(newItem, _players[playerRange]);
+            lot.Item.Count = Random.Range(1, 200);
+            lot.Item.Moneys.Count = Random.Range(1, 20) * lot.Item.Count;
+            _lots.Add(lot);
+        }
+
+        StockData data = new StockData(_lots);
+
+        string jsonData = JsonUtility.ToJson(data);
+
+        Debug.Log(jsonData);
+
+        return jsonData;
+    }
+}
+
+public struct StockData
+{
+    public Lot[] Lots;
+
+    public StockData(List<Lot> lots)
+    {
+        Lots = lots.ToArray();
     }
 }

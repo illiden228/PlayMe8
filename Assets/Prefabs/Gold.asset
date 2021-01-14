@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a189bb168d8d90478a09ea08c2f3d72, type: 3}
-  m_Name: DefaultObject
+  m_Script: {fileID: 11500000, guid: 1dbebba81d7469645be0e40623fcf098, type: 3}
+  m_Name: Gold
   m_EditorClassIdentifier: 
-  m_AddressableAssetSettingsGuid: 3feee5ebe0e5e9f4b8fba00d3d885294
+  Image: {fileID: 21300000, guid: cd36c12e5febc5646adf520bf30a5a93, type: 3}
+  Count: 846

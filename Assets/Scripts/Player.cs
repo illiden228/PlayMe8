@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
-
+[System.Serializable]
 public class Player
 {
     public string Name;
-    public Sprite Image;
+    public string ImageURL;
     public int Level;
 
-    public Player(string name, int level, Sprite image)
+    public Player(string name, int level, string image)
     {
         Name = name;
         Level = level;
-        Image = image;
+        ImageURL = image;
     }
 }

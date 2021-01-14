@@ -9,6 +9,7 @@ public class StockUI : MonoBehaviour
     [SerializeField] private CanvasGroup _stockPanel;
     [SerializeField] private BlurEnabler _blur;
     [SerializeField] private ScrollRect _scrollView;
+    [SerializeField] private LotScroller _scroller;
     [SerializeField] private GameObject _lotPrefab;
     [SerializeField] private Button _openButton;
     [SerializeField] private Button _closeButton;
@@ -20,7 +21,6 @@ public class StockUI : MonoBehaviour
     private RectTransform _scrollViewport;
     private GridLayoutGroup _scrollContent;
     private List<LotUI> _lotsUI = new List<LotUI>();
-    private float _rows => Mathf.Ceil(_lotsUI.Count / 3f);
 
     private void Start()
     {
@@ -55,6 +55,7 @@ public class StockUI : MonoBehaviour
         _stockPanel.blocksRaycasts = true;
         _blur.Activate();
         GetLots();
+        _scroller.SetColumns(Mathf.Ceil(_lotsUI.Count / 3f));
     }
 
     private void CloseStock()
@@ -68,18 +69,18 @@ public class StockUI : MonoBehaviour
 
     private void ResizeSlot()
     {
-        Vector2 newCellSize = new Vector2(_scrollViewport.rect.width / 2 - 3, _scrollViewport.rect.height / 3 - 5);
+        Vector2 newCellSize = new Vector2(_scrollViewport.rect.width / 2 - 3, _scrollViewport.rect.height / 3);
         _scrollContent.cellSize = newCellSize;
     }
 
     private void OnNextButtonClick()
     {
-        _scrollView.horizontalNormalizedPosition += (1f / (_rows - 2f));
+        _scroller.ScrollForward();
     }
 
     private void OnPreviousButtonClick()
     {
-        _scrollView.horizontalNormalizedPosition -= (1f / (_rows - 2f));
+        _scroller.ScrollBack();
     }
 
     private void RemoveLots()
@@ -93,11 +94,13 @@ public class StockUI : MonoBehaviour
         {
             Destroy(lot.gameObject);
         }
+
+        _lotsUI = new List<LotUI>();
     }
 
     private void GetLots()
     {
-        List<Lot> lots = _server.CreateLots();
+        List<Lot> lots = JsonUtility.FromJson<StockData>(_server.GetLots()).Lots.ToList();
         foreach (var lot in lots)
         {
             var newLot = Instantiate(_lotPrefab, _scrollContent.transform).GetComponent<LotUI>();

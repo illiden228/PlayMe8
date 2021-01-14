@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[CreateAssetMenu(fileName = "NewItem", menuName = "ScriptableObjects/Item")]
+public class Item : ScriptableObject
 {
     public Sprite Image;    
     public Money Moneys;
@@ -15,5 +16,13 @@ public class Item : MonoBehaviour
         Name = name;
         Moneys = moneys;
         Image = image;
+    }
+
+    public Item(Item template)
+    {
+        Image = template.Image;
+        Moneys = new Money(template.Moneys);
+        Name = template.Name;
+        Count = template.Count;
     }
 }

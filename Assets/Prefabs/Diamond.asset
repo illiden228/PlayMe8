@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
-  m_Name: Packed Assets_ContentUpdateGroupSchema
+  m_Script: {fileID: 11500000, guid: 1dbebba81d7469645be0e40623fcf098, type: 3}
+  m_Name: Diamond
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: b34f44ec8458ee24ba6c93f250a377bd, type: 2}
-  m_StaticContent: 0
+  Image: {fileID: 21300000, guid: 0a20331290db48641972832dbba6eab4, type: 3}
+  Count: 330

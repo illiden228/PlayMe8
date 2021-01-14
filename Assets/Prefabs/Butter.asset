@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 977adc904aec54d40bda06359674b281, type: 3}
+  m_Name: Butter
+  m_EditorClassIdentifier: 
+  Image: {fileID: 21300000, guid: 6c3f6e4565cd27945a3b8dbdfa1f1fc6, type: 3}
+  Moneys: {fileID: 11400000, guid: 070ec75e47b7b2f4bb4a05e4acf645ba, type: 2}
+  Name: "\u041C\u0430\u0441\u043B\u043E"
+  Count: 165
